@@ -44,9 +44,8 @@ impl VmService {
     pub fn start(&self, vm_id: &str, conn: &DbConnection) -> Result<Uuid> {
         use super::rpc::client::node::VmConfig;
 
-        // TODO: error handling
-        let host = self.host_service.get_running_host(conn);
-        let client = self.host_service.get_client(host.id);
+        let host = self.host_service.get_running_host(conn)?;
+        let client = self.host_service.get_client(host.id)?;
         let mut vm = self.get_by_id(vm_id, conn).unwrap();
         let clone = vm.clone();
         let request = VmConfig {
@@ -55,8 +54,9 @@ impl VmService {
             vcpus: clone.vcpu,
             kernel: self.get_kernel_path(&vm.kernel.to_string(), conn)?,
             kernel_params: clone.kernel_params,
-            network_mode: clone.network_mode.clone().unwrap_or_else(String::new),
-            address: clone.address.unwrap_or_else(String::new),
+            network_mode: clone.network_mode.clone(),
+            ip_address: clone.ip_address.unwrap_or_else(String::new),
+            mac_address: clone.mac_address.unwrap_or_else(String::new),
             drives: self.create_vm_drives(&vm, conn)?,
         };
 
@@ -64,9 +64,10 @@ impl VmService {
 
         match client.start_vm(request) {
             Ok(config) => {
-                let network_mode = vm.network_mode.as_ref().unwrap();
-                if NetworkMode::from_str(network_mode.as_str()).unwrap() == NetworkMode::Dhcp {
-                    vm.address = Some(config.into_inner().address);
+                if NetworkMode::from_str(&vm.network_mode)? == NetworkMode::Dhcp {
+                    let inner: &VmConfig = &config.into_inner();
+                    vm.ip_address = Some(inner.ip_address.clone());
+                    vm.mac_address = Some(inner.mac_address.clone());
                     Vm::update(&vm, conn)?;
                 }
             }
@@ -81,9 +82,8 @@ impl VmService {
     pub fn stop(&self, vm_id: &str, conn: &DbConnection) -> Result<Uuid> {
         use super::rpc::client::node::VmId;
 
-        // TODO: error handling
-        let host = self.host_service.get_running_host(conn);
-        let client = self.host_service.get_client(host.id);
+        let host = self.host_service.get_running_host(conn)?;
+        let client = self.host_service.get_client(host.id)?;
         let request = VmId {
             vm_id: vm_id.to_owned(),
         };

@@ -54,8 +54,9 @@ table! {
         host_id -> Nullable<Uuid>,
         vcpu -> Int4,
         memory -> Int4,
-        address -> Nullable<Varchar>,
-        network_mode -> Nullable<Varchar>,
+        ip_address -> Nullable<Varchar>,
+        mac_address -> Nullable<Varchar>,
+        network_mode -> Varchar,
         kernel_params -> Varchar,
         kernel -> Uuid,
     }

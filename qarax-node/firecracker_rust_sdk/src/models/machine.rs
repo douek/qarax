@@ -54,7 +54,6 @@ impl Machine {
         }
     }
 
-    // TODO: check errors and stuff
     pub async fn configure_boot_source(&self) -> Result<String> {
         let boot_source = serde_json::to_string(&self.boot_source)?;
         tracing::info!("Sending boot_source with {}\n", boot_source);
@@ -85,7 +84,6 @@ impl Machine {
     }
 
     pub async fn configure_logger(&self) -> Result<String> {
-        // TODO: error handling
         let logger = serde_json::to_string(&self.logger)?;
 
         tracing::info!("Sending logger with {}\n", logger);
@@ -113,8 +111,6 @@ impl Machine {
     }
 
     pub async fn start(&self) -> Result<String> {
-        tracing::info!("Starting VM :O");
-
         Ok(self
             .client
             .request(
@@ -126,7 +122,6 @@ impl Machine {
     }
 
     pub async fn stop(&mut self) -> Result<()> {
-        // TODO error handling
         use nix::sys::signal;
         use nix::sys::wait::waitpid;
         use nix::unistd::Pid;
@@ -135,7 +130,8 @@ impl Machine {
         let pid = &self.pid.take().unwrap();
         signal::kill(Pid::from_raw(*pid as i32), signal::Signal::SIGTERM)?;
         waitpid(Pid::from_raw(*pid as i32), None)?;
-        fs::remove_file(&self.client.socket_path).expect("failed to remove file");
+        fs::remove_file(&self.client.socket_path).expect("failed to socket file");
+        fs::remove_file(&self.logger.log_path).expect("failed to log file");
 
         Ok(())
     }

@@ -55,18 +55,29 @@ impl VmmHandler {
         // TODO: use an enum like civilized person
         if vm_config.network_mode == "dhcp" {
             network::create_tap_device(&vm_config.vm_id).await?;
-            let mac = network::generate_mac();
-            tracing::info!("Generated MAC address: '{}'", mac);
+            let mac: network::MacAddress;
+            if vm_config.mac_address.is_empty() {
+                mac = network::generate_mac();
+                tracing::info!("Generated MAC address: '{}'", mac);
 
-            // TODO: The IP should be sent back to qarax
+                // Send back the generated MAC address
+                vm_config.mac_address = mac.to_string();
+            } else {
+                use std::str::FromStr;
+
+                tracing::info!("Using available MAC address: '{}'", vm_config.mac_address);
+                mac = network::MacAddress::from_str(&vm_config.mac_address)?;
+            }
+
             let ip =
                 network::get_ip(Arc::new(mac), Arc::new(get_tap_device(&vm_config.vm_id))).await?;
 
             tracing::info!("Assigning IP '{}' for VM {}", ip, &vm_config.vm_id);
             network_interfaces.push(Self::configure_network(&mut bs, &vm_config.vm_id, mac));
-            vm_config.address = ip;
+            vm_config.ip_address = ip;
         }
 
+        // TODO: implement From
         let fc_drives = vm_config
             .drives
             .iter()
@@ -120,10 +131,6 @@ impl VmmHandler {
 
             machine.set_pid(child.id());
 
-            tracing::info!("Starting VM machine...");
-            machine.start().await?;
-            tracing::info!("Machine started");
-
             Ok(())
         }
     }
@@ -136,18 +143,14 @@ impl VmmHandler {
         } else {
             tracing::info!("Stopping VM machine...");
             let machine = machine.as_mut().unwrap();
-            match machine.stop().await {
-                Ok(_) => {
-                    if machine.network_interfaces.is_empty() {
-                        tracing::info!("Removing tap device");
-                        network::delete_tap_device(&machine.vm_id).await?;
-                    }
-
-                    tracing::info!("VM stopped");
-                    Ok(())
-                }
-                Err(e) => Err(anyhow!("Failed to stop VM :( {}", e.to_string())),
+            machine.stop().await?;
+            if !machine.network_interfaces.is_empty() {
+                tracing::info!("Removing tap device");
+                network::delete_tap_device(&machine.vm_id).await?;
             }
+
+            tracing::info!("VM stopped");
+            Ok(())
         }
     }
 

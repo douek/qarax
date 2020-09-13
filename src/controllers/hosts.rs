@@ -45,7 +45,7 @@ pub fn add_host(host: Json<NewHost>, backend: State<Backend>, conn: DbConnection
     }
 }
 
-#[get("/health/<id>")]
+#[get("/<id>/health")]
 pub fn health_check(id: Uuid, backend: State<Backend>) -> ApiResponse {
     match backend.host_service.health_check(&id.to_string()) {
         Ok(status) => ApiResponse {
@@ -65,14 +65,20 @@ pub fn install(
     host: Json<InstallHost>,
     backend: State<Backend>,
     conn: DbConnection,
-) -> JsonValue {
+) -> ApiResponse {
     match backend
         .host_service
         .clone()
         .install(&host_id.to_string(), &host, conn)
     {
-        Ok(status) => json!({ "status": status }),
-        Err(e) => json!({ "error": e.to_string()}),
+        Ok(status) => ApiResponse {
+            response: json!({ "status": status }),
+            status: Status::Ok,
+        },
+        Err(e) => ApiResponse {
+            response: json!({ "error": e.to_string()}),
+            status: Status::BadRequest,
+        },
     }
 }
 
@@ -84,29 +90,18 @@ pub fn routes() -> Vec<rocket::Route> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::create_backend;
+    use crate::common;
 
     use rocket::http::ContentType;
-    use rocket::local::Client;
     use serde_json::Value;
+
+    const MOUNT: &str = "/hosts";
 
     embed_migrations!();
 
-    fn get_client() -> (Client, DbConnection) {
-        let rocket = rocket::ignite()
-            .manage(create_backend())
-            .attach(DbConnection::fairing())
-            .mount("/hosts", routes());
-
-        let conn = DbConnection::get_one(&rocket).expect("Database connection failed");
-        embedded_migrations::run(&*conn).expect("Failed to run migrations");
-        let client = Client::new(rocket).expect("Failed to get client");
-        (client, conn)
-    }
-
     #[test]
     fn test_index_empty() {
-        let (client, _) = get_client();
+        let (client, _) = common::get_client(MOUNT, routes());
         let mut response = client.get("/hosts").dispatch();
 
         let response = response.body_string();
@@ -120,12 +115,11 @@ mod tests {
         let payload = r#"{ 
         "name":"hosto",
         "address": "1.1.1.1",
-        "user": "root",
+        "host_user": "root",
         "password": "passwordo",
-        "local_node_path": "/home/",
         "port": 8001}"#;
 
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         client
             .post("/hosts")
             .header(ContentType::JSON)
@@ -145,12 +139,11 @@ mod tests {
         let payload = r#"{ 
         "name":"hosto",
         "address": "1.1.1.1",
-        "user": "root",
+        "host_user": "root",
         "password": "passwordo",
-        "local_node_path": "/home/",
         "port": 8001}"#;
 
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let mut response = client
             .post("/hosts")
             .header(ContentType::JSON)
@@ -173,7 +166,7 @@ mod tests {
 
     #[test]
     fn test_host_not_found() {
-        let (client, _) = get_client();
+        let (client, _) = common::get_client(MOUNT, routes());
         let response = client
             .get("/hosts/835b6b42-9e70-43ef-a58d-6235ab0e1495")
             .dispatch();
@@ -186,12 +179,11 @@ mod tests {
         let payload = r#"{
             "name":"hosto",
             "address": "1.1.1.1",
-            "user": "root",
+            "host_user": "root",
             "password": "passwordo",
-            "local_node_path": "/home/",
             "port": 8001}"#;
 
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
 
         let response1 = client

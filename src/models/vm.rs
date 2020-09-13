@@ -17,8 +17,9 @@ pub struct Vm {
     pub host_id: Option<Uuid>, // Add belongs_to macro
     pub vcpu: i32,
     pub memory: i32,
-    pub address: Option<String>,
-    pub network_mode: Option<String>,
+    pub ip_address: Option<String>,
+    pub mac_address: Option<String>,
+    pub network_mode: String,
     pub kernel_params: String,
     pub kernel: Uuid,
 }
@@ -29,8 +30,12 @@ pub struct NewVm {
     pub vcpu: i32,
     pub memory: i32,
     pub kernel: Uuid,
-    pub network_mode: Option<NetworkMode>, // TODO: remove option and use (DHCP, STATIC_IP, NONE)
-    pub address: Option<String>,
+
+    #[serde(default)]
+    pub network_mode: NetworkMode,
+
+    pub ip_address: Option<String>,
+    pub mac_address: Option<String>,
     pub kernel_params: Option<String>,
 }
 
@@ -40,7 +45,14 @@ pub enum NetworkMode {
     Dhcp,
     #[serde(rename = "static_ip")]
     StaticIp,
-    // TODO: add default None
+    #[serde(rename = "none")]
+    None,
+}
+
+impl Default for NetworkMode {
+    fn default() -> Self {
+        NetworkMode::None
+    }
 }
 
 impl NetworkMode {
@@ -48,17 +60,20 @@ impl NetworkMode {
         match self {
             NetworkMode::Dhcp => String::from("dhcp"),
             NetworkMode::StaticIp => String::from("static_ip"),
+            NetworkMode::None => String::from("none"),
         }
     }
 }
 
 impl FromStr for NetworkMode {
-    type Err = ();
+    type Err = Error;
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         match input {
             "dhcp" => Ok(NetworkMode::Dhcp),
             "static_ip" => Ok(NetworkMode::StaticIp),
-            _ => Err(()),
+            "none" => Ok(NetworkMode::None),
+
+            _ => Err(anyhow!("bad network type")),
         }
     }
 }
@@ -116,16 +131,10 @@ impl Vm {
 
 impl From<&NewVm> for Vm {
     fn from(nv: &NewVm) -> Self {
-        let network_mode: Option<String>;
-        let address = if let Some(n) = &nv.network_mode {
-            network_mode = Some(n.as_str());
-            match n {
-                NetworkMode::Dhcp => String::from(""),
-                NetworkMode::StaticIp => nv.address.as_ref().unwrap().to_owned(),
-            }
-        } else {
-            network_mode = None;
-            String::from("")
+        let ip_address = match nv.network_mode {
+            NetworkMode::Dhcp => None,
+            NetworkMode::None => None,
+            NetworkMode::StaticIp => nv.ip_address.clone(),
         };
 
         let kernel_params = match &nv.kernel_params {
@@ -141,8 +150,9 @@ impl From<&NewVm> for Vm {
             vcpu: nv.vcpu,
             memory: nv.memory,
             kernel: nv.kernel,
-            address: Some(address),
-            network_mode,
+            ip_address: ip_address,
+            mac_address: nv.mac_address.clone(),
+            network_mode: nv.network_mode.as_str(),
             kernel_params,
         }
     }

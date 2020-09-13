@@ -3,7 +3,7 @@ use crate::database::DbConnection;
 use crate::models::vm::NewVm;
 use crate::services::Backend;
 
-use rocket_contrib::json::{Json, JsonValue};
+use rocket_contrib::json::Json;
 use rocket_contrib::uuid::Uuid;
 
 #[get("/")]
@@ -49,18 +49,30 @@ pub fn add_vm(vm: Json<NewVm>, backend: State<Backend>, conn: DbConnection) -> A
 }
 
 #[post("/<id>/start")]
-pub fn start_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> JsonValue {
+pub fn start_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> ApiResponse {
     match backend.vm_service.start(&id.to_string(), &conn) {
-        Ok(id) => json!({ "vm_id": id }),
-        Err(e) => json!({ "error": format!("could not start vm: {}", e) }),
+        Ok(id) => ApiResponse {
+            response: json!({ "vm_id": id }),
+            status: Status::Ok,
+        },
+        Err(e) => ApiResponse {
+            response: json!({ "error": format!("could not start vm: {}", e) }),
+            status: Status::BadRequest,
+        },
     }
 }
 
 #[post("/<id>/stop")]
-pub fn stop_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> JsonValue {
+pub fn stop_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> ApiResponse {
     match backend.vm_service.stop(&id.to_string(), &conn) {
-        Ok(id) => json!({ "vm_id": id }),
-        Err(_) => json!({ "error": "could not stop vm" }),
+        Ok(id) => ApiResponse {
+            response: json!({ "vm_id": id }),
+            status: Status::Ok,
+        },
+        Err(_) => ApiResponse {
+            response: json!({ "error": "could not stop vm" }),
+            status: Status::BadRequest,
+        },
     }
 }
 
@@ -124,26 +136,15 @@ pub fn routes() -> Vec<rocket::Route> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::create_backend;
+    use crate::common;
     use crate::models::vm::{NetworkMode, NewVm};
 
     use rocket::http::ContentType;
-    use rocket::local::Client;
     use serde_json::Value;
 
     embed_migrations!();
 
-    fn get_client() -> (Client, DbConnection) {
-        let rocket = rocket::ignite()
-            .manage(create_backend())
-            .attach(DbConnection::fairing())
-            .mount("/vms", routes());
-
-        let conn = DbConnection::get_one(&rocket).expect("Database connection failed");
-        embedded_migrations::run(&*conn).expect("Failed to run migrations");
-        let client = Client::new(rocket).expect("Failed to get client");
-        (client, conn)
-    }
+    const MOUNT: &str = "/vms";
 
     fn create_kernel(backend: &Backend, conn: &DbConnection) -> Result<uuid::Uuid> {
         use crate::models::kernel::NewKernel;
@@ -175,8 +176,9 @@ mod tests {
 
     fn create_payload(
         kernel_id: uuid::Uuid,
-        network_mode: Option<NetworkMode>,
-        address: Option<String>,
+        network_mode: NetworkMode,
+        ip_address: Option<String>,
+        mac_address: Option<String>,
         kernel_params: Option<String>,
     ) -> Result<String> {
         let vm = NewVm {
@@ -185,7 +187,8 @@ mod tests {
             memory: 128,
             kernel: kernel_id,
             network_mode,
-            address,
+            ip_address,
+            mac_address,
             kernel_params,
         };
 
@@ -194,7 +197,7 @@ mod tests {
 
     #[test]
     fn test_index_empty() {
-        let (client, _) = get_client();
+        let (client, _) = common::get_client(MOUNT, routes());
         let mut response = client.get("/vms").dispatch();
 
         let response = response.body_string();
@@ -205,10 +208,10 @@ mod tests {
 
     #[test]
     fn test_add_vm_no_network() {
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
         let kernel_id = create_kernel(&backend, &conn).unwrap();
-        let payload = create_payload(kernel_id, None, None, None).unwrap();
+        let payload = create_payload(kernel_id, NetworkMode::None, None, None, None).unwrap();
 
         let mut response = client
             .post("/vms")
@@ -222,7 +225,7 @@ mod tests {
         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);
 
         let vm = backend.vm_service.get_by_id(vm_id, &conn).unwrap();
-        assert_eq!(vm.network_mode, None);
+        assert_eq!(vm.network_mode, NetworkMode::None.as_str());
 
         // TODO: Stupid teardown
         backend.vm_service.delete_all(&conn).unwrap();
@@ -232,10 +235,10 @@ mod tests {
 
     #[test]
     fn test_add_vm_dhcp_network() {
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
         let kernel_id = create_kernel(&backend, &conn).unwrap();
-        let payload = create_payload(kernel_id, Some(NetworkMode::Dhcp), None, None).unwrap();
+        let payload = create_payload(kernel_id, NetworkMode::Dhcp, None, None, None).unwrap();
 
         let mut response = client
             .post("/vms")
@@ -249,7 +252,7 @@ mod tests {
         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);
 
         let vm = backend.vm_service.get_by_id(vm_id, &conn).unwrap();
-        assert_eq!(vm.network_mode, Some(String::from("dhcp")));
+        assert_eq!(vm.network_mode, String::from("dhcp"));
 
         // TODO: Stupid teardown
         backend.vm_service.delete_all(&conn).unwrap();
@@ -259,13 +262,14 @@ mod tests {
 
     #[test]
     fn test_add_vm_static_ip_network() {
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
         let kernel_id = create_kernel(&backend, &conn).unwrap();
         let payload = create_payload(
             kernel_id,
-            Some(NetworkMode::StaticIp),
+            NetworkMode::StaticIp,
             Some(String::from("192.168.122.100")),
+            None,
             None,
         )
         .unwrap();
@@ -282,8 +286,8 @@ mod tests {
         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);
 
         let vm = backend.vm_service.get_by_id(vm_id, &conn).unwrap();
-        assert_eq!(vm.network_mode, Some(String::from("static_ip")));
-        assert_eq!(vm.address, Some(String::from("192.168.122.100")));
+        assert_eq!(vm.network_mode, String::from("static_ip"));
+        assert_eq!(vm.ip_address, Some(String::from("192.168.122.100")));
 
         // TODO: Stupid teardown
         backend.vm_service.delete_all(&conn).unwrap();
@@ -293,10 +297,10 @@ mod tests {
 
     #[test]
     fn test_default_kernel_params() {
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
         let kernel_id = create_kernel(&backend, &conn).unwrap();
-        let payload = create_payload(kernel_id, None, None, None).unwrap();
+        let payload = create_payload(kernel_id, NetworkMode::None, None, None, None).unwrap();
         println!("{}", payload);
         let mut response = client
             .post("/vms")
@@ -323,13 +327,14 @@ mod tests {
 
     #[test]
     fn test_custom_kernel_params() {
-        let (client, conn) = get_client();
+        let (client, conn) = common::get_client(MOUNT, routes());
         let backend: State<Backend> = State::from(&client.rocket()).unwrap();
         let kernel_id = create_kernel(&backend, &conn).unwrap();
         let payload = create_payload(
             kernel_id,
-            Some(NetworkMode::StaticIp),
+            NetworkMode::StaticIp,
             Some(String::from("192.168.122.100")),
+            None,
             Some(String::from("ip=1.1.1.1")),
         )
         .unwrap();

@@ -87,7 +87,6 @@ impl HostService {
 
         let clients = Arc::clone(&self.clients);
         thread::spawn(move || {
-            // TODO: handle errors
             let ac = ansible::AnsibleCommand::new(
                 ansible::INSTALL_HOST_PLAYBOOK,
                 &db_host.host_user,
@@ -148,18 +147,21 @@ impl HostService {
         }
     }
 
-    pub fn get_client(&self, host_id: Uuid) -> Client {
+    pub fn get_client(&self, host_id: Uuid) -> Result<Client> {
         // TODO: error handling
-        self.clients.read().unwrap().get(&host_id).cloned().unwrap()
+        let client = self.clients.read().unwrap();
+        match client.get(&host_id) {
+            Some(client) => Ok(client.clone()),
+            None => Err(anyhow!("Client unavailable for host {}", host_id)),
+        }
     }
 
-    pub fn get_running_host(&self, conn: &DbConnection) -> Host {
-        // TODO: error handling
-        Host::by_status(Status::Up, conn)
-            .unwrap()
-            .first()
-            .cloned()
-            .unwrap()
+    pub fn get_running_host(&self, conn: &DbConnection) -> Result<Host> {
+        let hosts = Host::by_status(Status::Up, conn)?;
+        match hosts.first() {
+            Some(h) => Ok(h.clone()),
+            None => Err(anyhow!("No hosts available")),
+        }
     }
 
     pub fn initialize_hosts(&self, conn: &DbConnection) {
