@@ -1,0 +1,7 @@
+openapi: 3.0.1
+info:
+  title: Qarax API
+  version: 0.1.0
+path:
+  /hosts:
+    

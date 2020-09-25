@@ -1,9 +1,11 @@
+import sys
 import subprocess
 import paramiko
 import time
 import requests
 import os
 import logging
+
 
 USER = "root"
 PASSWORD = "fedora"
@@ -24,27 +26,25 @@ def run_host():
     process = subprocess.run(['./start_vm.sh'], stdout=subprocess.PIPE)
     logging.info(process.stdout)
 
-def check_host_up():
+def get_ip():
     # set timer
     timer = time.time()
-    timeout = 60 #secs
+    timeout = 20 #secs
     ip = get_ip_of_host()
-    while ip != '':
+    while ip == '':
         # checking for time out
         if (time.time() > timer + timeout):
-            logging.error("IP not Found")
-            return False
-        time.sleep(20)
+            raise Exception("Could not find ip")
+        time.sleep(5)
         ip = get_ip_of_host()
-    if ip:
-        logging.info("Host Ip: " + ip)
-        return check_ssh(ip)
+    return ip
 
 def get_ip_of_host():
     command = "virsh domifaddr --domain fchost | grep vnet0 | tr -s '[:blank:]' | awk '{ print $4 }'"
     ps = subprocess.Popen(command,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     output = ps.communicate()[0]
     ip = output.decode("utf-8").split('/')[0]
+    logging.info("ip %s", ip)
     return ip
 
 def check_ssh(ip):
@@ -52,11 +52,10 @@ def check_ssh(ip):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         ssh.connect(ip, port=PORT, username=USER, password=PASSWORD)
-        logging.info("SSH connected successfuly")
         return True
     except Exception as e:
         logging.error(e)
-        return False
+        raise Exception("Could not connect to host with ssh")
 
 def get_drive():
     if os.path.isfile('.cache/hello-rootfs.ext4'):
@@ -76,21 +75,34 @@ def get_kernel():
         with open(".cache/hello-vmlinux.bin", "wb") as file:
             file.write(downloaded_obj.content)
 
-check_host_up()
-
-def main():
+def bootstrap():
     # setting logger configuration
     logging.basicConfig(filename='bootstrap.log',level=logging.INFO)
     # Performing the steps to ensure enviorment is ready for qarax operations
     # (img in .cache folder)
     create_host()
     run_host()
+    # get ip
+    try:
+        ip = get_ip()
+    except Exception as e:
+        logging.error(e.args[0])
+        sys.exit(-1)
+
+    logging.info("Host Ip: " + ip)
     # check for ip and ssh
-    if not check_host_up():
-        raise Exception(msg="Could not connect to host")
+    try:
+        if check_ssh(ip):
+            logging.info("ssh connect successfuly")
+    except Exception as e:
+        logging.error(e.args[0])
     # get files for kernel and drive (.cache folder)
     get_drive()
     get_kernel()
 
-if __name__ == "__main__":
-    main()
+    host = {
+        'address' : ip,
+        'host_user' : USER,
+        'password' : PASSWORD
+    }
+    return host
