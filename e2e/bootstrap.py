@@ -15,15 +15,15 @@ IMG_BUCKET_URL="https://s3.amazonaws.com/spec.ccfc.min/img"
 KERNEL = IMG_BUCKET_URL + "/hello/kernel/hello-vmlinux.bin"
 DRIVE = IMG_BUCKET_URL + "/hello/fsfiles/hello-rootfs.ext4"
 
-def create_host():
+def create_host(path='.'):
    # The script already handles the check if already exists
    logging.info("Creating host")
-   process = subprocess.run(['./create_test_vm.sh'],stdout=subprocess.PIPE)
+   process = subprocess.run([f'{path}/create_test_vm.sh'],stdout=subprocess.PIPE)
    logging.info(process.stdout)
 
-def run_host():
+def run_host(path='.'):
     logging.info("Starting host")
-    process = subprocess.run(['./start_vm.sh'], stdout=subprocess.PIPE)
+    process = subprocess.run([f'{path}/start_vm.sh'], stdout=subprocess.PIPE)
     logging.info(process.stdout)
 
 def get_ip():
@@ -57,31 +57,31 @@ def check_ssh(ip):
         logging.error(e)
         raise Exception("Could not connect to host with ssh")
 
-def get_drive():
-    if os.path.isfile('.cache/hello-rootfs.ext4'):
+def get_drive(path='./.cache'):
+    if os.path.isfile(f'{path}/hello-rootfs.ext4'):
         logging.info('file hello-rootfs.ext4 exists')
     else:
         logging.info("Getting drive from uri: " + DRIVE)
         downloaded_obj = requests.get(url=DRIVE)
-        with open(".cache/hello-rootfs.ext4", "wb") as file:
+        with open(f'{path}/hello-rootfs.ext4', 'wb') as file:
             file.write(downloaded_obj.content)
 
-def get_kernel():
-    if os.path.isfile('.cache/hello-vmlinux.bin'):
+def get_kernel(path='./.cache'):
+    if os.path.isfile(f'{path}/hello-vmlinux.bin'):
         logging.info("file hello-vmlinux.bin exists")
     else:
         logging.info("Getting Kernel from uri: " + KERNEL)
         downloaded_obj = requests.get(url=KERNEL)
-        with open(".cache/hello-vmlinux.bin", "wb") as file:
+        with open(f'{path}/hello-vmlinux.bin', 'wb') as file:
             file.write(downloaded_obj.content)
 
-def bootstrap():
+def bootstrap(script_path, cache_path):
     # setting logger configuration
     logging.basicConfig(filename='bootstrap.log',level=logging.INFO)
     # Performing the steps to ensure enviorment is ready for qarax operations
     # (img in .cache folder)
-    create_host()
-    run_host()
+    create_host(script_path)
+    run_host(script_path)
     # get ip
     try:
         ip = get_ip()
@@ -97,8 +97,8 @@ def bootstrap():
     except Exception as e:
         logging.error(e.args[0])
     # get files for kernel and drive (.cache folder)
-    get_drive()
-    get_kernel()
+    get_drive(cache_path)
+    get_kernel(cache_path)
 
     host = {
         'address' : ip,
