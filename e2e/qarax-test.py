@@ -4,13 +4,19 @@ from qarax import Configuration
 import bootstrap as bs
 import sys
 
-bs_host = bs.bootstrap()
+bs_host = bs.bootstrap('/home/dag/Development/rust/qarax/e2e/','/home/dag/Development/rust/qarax/e2e/.cache')
 
 conf = Configuration()
 conf.host= 'http://localhost:8000'
 
 api_instance = qarax.HostsApi(qarax.ApiClient(conf))
-body = Host(name='hostoTest', address=bs_host["address"], host_user=bs_host["host_user"],password=bs_host["password"], port=50051 )
+body = Host(
+    name='hostoTest',
+    address=bs_host["address"],
+    host_user=bs_host["host_user"],
+    password=bs_host["password"], 
+    port=50051 
+)
 
 # try:
 #     # Create new host
@@ -21,14 +27,14 @@ body = Host(name='hostoTest', address=bs_host["address"], host_user=bs_host["hos
 
 try:
     #Get hosts list
-    api_response = api_instance.hosts_get()
+    api_response = api_instance.list_hosts()
+    print("api response " + str(api_response))
 except Exception as e:
     print("Exception when calling HostsApi->hosts_get: %s\n" % e)
 
-host_id = 'e962a030-3d2a-4474-8dcf-7d183d966aa7'
 try:
     # Get host by ID
-    api_response_host = api_instance.hosts_host_id_get(host_id)
+    api_response_host = api_instance.get_host(api_response[0].id)
     print(api_response_host)
 except Exception as e:
     print("Exception when calling HostsApi->hosts_host_id_get: %s\n" % e)
