@@ -1,0 +1,86 @@
+{
+    "id": "B8RPQGmDy5W69msVp0YF",
+    "name": "No intro",
+    "task": {
+        "dod": "",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "snippet",
+            "lines": [
+                " };",
+                " use crate::vmm_handler::VmmHandler;",
+                " ",
+                "*use std::collections::HashMap;",
+                "*use std::sync::Arc;",
+                "*use tokio::sync::RwLock;",
+                "*use tonic::{Code, Request, Response, Status};",
+                "*",
+                "*use anyhow::Result;",
+                " ",
+                " #[derive(Debug)]",
+                " pub struct VmService {"
+            ],
+            "firstLineNumber": 4,
+            "path": "qarax-node/src/vm_service.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": "oiajwwqijo ijq\n\n$"
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "             &config.memory,",
+                "             &config.vcpus",
+                "         );",
+                "*",
+                "*        let mut handlers = self.handlers.write().await;",
+                "*        let handler = handlers",
+                "*            .entry(config.vm_id.to_owned())",
+                "*            .or_insert_with(VmmHandler::new);",
+                "*",
+                "*        handler",
+                "             .configure_vm(&mut config)",
+                "             .await",
+                "             .map_err(|e| Status::internal(e.to_string()))?;"
+            ],
+            "firstLineNumber": 35,
+            "path": "qarax-node/src/vm_service.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": "jghergh reg lrtjg"
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "             handlers.remove(&vm_id);",
+                "             let response = NodeResponse {",
+                "                 status: NodeStatus::Success as i32,",
+                "*            };",
+                "*",
+                "*            Ok(Response::new(response))",
+                "*        } else {",
+                "*            Err(Status::new(Code::FailedPrecondition, \"vm not found\"))",
+                "         }",
+                "     }",
+                " "
+            ],
+            "firstLineNumber": 73,
+            "path": "qarax-node/src/vm_service.rs",
+            "comments": []
+        }
+    ],
+    "file_version": "2.0.0",
+    "meta": {
+        "app_version": "0.3.9-6",
+        "file_blobs": {
+            "qarax-node/src/vm_service.rs": "0bb6f1f18c4f066f0559b9decab290bc6dcfc54c"
+        }
+    }
+}
