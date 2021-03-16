@@ -1,0 +1,128 @@
+{
+    "id": "D4IFPZpZXVKobeSDF4EV",
+    "name": "dsfsd",
+    "task": {
+        "dod": "asdsa",
+        "tests": [
+            "jfgjhghj"
+        ],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": "sadsa"
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " #[derive(Serialize, Deserialize, Debug)]",
+                " pub struct NewHost {",
+                "     pub name: String,",
+                "*    pub address: String,",
+                "+    pub address: S",
+                "*    pub port: i32,",
+                "*    pub host_user: String,",
+                "*    pub password: String,",
+                "*}",
+                "*",
+                "*#[derive(Serialize, Deserialize, Debug, Clone)]",
+                "*pub struct InstallHost {",
+                "*    pub local_node_path: String,",
+                "*",
+                "*    #[serde(rename = \"fcversion\")]",
+                "*    pub fc_version: String,",
+                " }",
+                " ",
+                " impl Host {"
+            ],
+            "firstLineNumber": 21,
+            "path": "src/models/host.rs",
+            "comments": []
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "             }",
+                "         }",
+                "     }",
+                "*",
+                "+om(h);",
+                "*    pub fn by_status(host_status: Status, conn: &PgConnection) -> Result<Vec<Host>> {",
+                "*        match hosts.filter(host::status.eq(host_status)).get_results(conn) {",
+                "*            Ok(h) => Ok(h),",
+                "*            Err(e) => Err(ModelError::NoResults(EntityType::Host, anyhow!(e)).into()),",
+                "*        }",
+                "*    }",
+                "*",
+                "*    pub fn insert(h: &NewHost, conn: &PgConnection) -> Result<uuid::Uuid> {",
+                "*        let h = Host::from(h);",
+                " ",
+                "         match diesel::insert_into(hosts::table).values(&h).execute(conn) {",
+                "             Ok(_) => Ok(h.id.to_owned()),"
+            ],
+            "firstLineNumber": 53,
+            "path": "src/models/host.rs",
+            "comments": []
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "     pub fn delete_all(conn: &PgConnection) -> Result<usize, diesel::result::Error> {",
+                "         use crate::schema::hosts::dsl::*;",
+                " ",
+                "*        diesel::delete(hosts).execute(conn)",
+                "+      name: nh.name.to_owned(),",
+                "*    }",
+                "*}",
+                "*",
+                "*impl From<&NewHost> for Host {",
+                "*    fn from(nh: &NewHost) -> Self {",
+                "*        Host {",
+                "*            id: Uuid::new_v4(),",
+                "*            name: nh.name.to_owned(),",
+                "             address: nh.address.to_owned(),",
+                "             port: nh.port.to_owned(),",
+                "             host_user: nh.host_user.to_owned(),"
+            ],
+            "firstLineNumber": 87,
+            "path": "src/models/host.rs",
+            "comments": []
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "             .inner_join(kernels::table.on(kernels::id.eq(kernel_id)))",
+                "             .select(crate::schema::storage::all_columns)",
+                "             .get_result::<Storage>(conn)",
+                "*            .map_err(|e| anyhow!(e))",
+                "*    }",
+                "*",
+                "*    pub fn delete_all(conn: &PgConnection) -> Result<usize, diesel::result::Error> {",
+                "*        use crate::schema::kernels::dsl::*;",
+                "*",
+                "*        diesel::delete(kernels).execute(conn)",
+                "*    }",
+                " }",
+                " ",
+                " #[derive(Serialize, Deserialize, Debug)]"
+            ],
+            "firstLineNumber": 36,
+            "path": "src/models/kernel.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": "sdsa"
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.0",
+    "meta": {
+        "app_version": "0.3.9-6",
+        "file_blobs": {
+            "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd",
+            "src/models/kernel.rs": "3d530b295631b0ee918c1481864e7f36ddb5a264"
+        }
+    }
+}
