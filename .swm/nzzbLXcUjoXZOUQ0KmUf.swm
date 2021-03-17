@@ -71,6 +71,10 @@
             "comments": []
         },
         {
+            "type": "text",
+            "text": "efawe f"
+        },
+        {
             "type": "snippet",
             "lines": [
                 "         .attach(DbConnection::fairing())",
