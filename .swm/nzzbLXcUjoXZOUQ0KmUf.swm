@@ -90,12 +90,16 @@
             "path": "src/common.rs",
             "comments": [],
             "text": "rstgrtg"
+        },
+        {
+            "type": "text",
+            "text": "erg eruhguhg oerg"
         }
     ],
     "symbols": {},
     "file_version": "2.0.0",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.0",
         "file_blobs": {
             "scripts/create_db.sh": "ae9a7e74d2f23e2866277586f5dff4a4075b17b3",
             "scripts/run_tests.sh": "4af6981cead5a1893e2bcd4305ff5bf2020129b8",
