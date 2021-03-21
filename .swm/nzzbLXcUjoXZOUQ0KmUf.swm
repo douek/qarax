@@ -93,7 +93,7 @@
         },
         {
             "type": "text",
-            "text": ""
+            "text": "General\n=======\n\nPlease read this document before contributing to this repository.\n\nAdding Dependencies\n===================\n\nBefore adding an external dependency, please read this section.\n\nGeneral\n-------\n\n*   If the dependency in question passes the guidelines below - it is automatically accepted. Otherwise, consult before adding this dependency.\n    \n*   Whenever you add a package - mention it via Slack or during an R&D Meeting.\n    \n*   When you add a package (as a dependency, not a dev dependency) - add it to `/docs/Licenses.md`.\n    \n\nGuidelines\n----------\n\n*   Licenses - should be `MIT`.\n    \n*   Number of weekly downloads - `>~500,000`.\n    \n*   Unpacked size - `< 30k`.\n    \n*   Vulnerabilities (incl. dependencies) - `0`.\n    \n*   Security warnings - `0`.\n    \n*   Last commit - `<last 6 months`.\n    \n\nHTML/CSS Features\n=================\n\nGeneral\n-------\n\n*   If the feature in question passes the guidelines below - it is automatically accepted. Otherwise, consult before using it.\n    \n\nGuidelines\n----------\n\n*   Browser support - `> 90%` on [Can I Use](https://caniuse.com/)."
         },
         {
             "type": "text",
