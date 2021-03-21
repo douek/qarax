@@ -93,7 +93,11 @@
         },
         {
             "type": "text",
-            "text": "erg eruhguhg oerg"
+            "text": ""
+        },
+        {
+            "type": "text",
+            "text": ""
         }
     ],
     "symbols": {},
