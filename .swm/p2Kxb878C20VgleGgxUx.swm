@@ -4,7 +4,11 @@
     "content": [
         {
             "type": "text",
-            "text": "rdth rhtr\n\nrdth drt\n\ng rtn\n\ntrhd rth\n\n\n// text added in md mode"
+            "text": "rdth rhtr\n\nrdth drt\n\ng rtn\n\ntrhd rth\n\n// text added in md mode\n\n/ rtguejrgesergkj. /\n\nHTML/CSS Features\n=================\n\nGeneral\n-------\n\n*   If the feature in question passes the guidelines below - it is automatically accepted. Otherwise, consult before using it.\n    \n\nGuidelines\n----------\n\n*   Browser support - `> 90%` on [Can I Use](https://caniuse.com/)."
+        },
+        {
+            "type": "text",
+            "text": ""
         }
     ],
     "symbols": {},
