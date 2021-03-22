@@ -1,0 +1,111 @@
+{
+    "id": "Ed2H2XzXOOl6VlsXKkq8",
+    "name": "Test Hunk Comments",
+    "task": {
+        "dod": "a",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": ""
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "     pub password: String,",
+                " }",
+                " ",
+                "*#[derive(Serialize, Deserialize, Debug)]",
+                "*pub struct NewHost {",
+                "*    pub name: String,",
+                "*    pub address: String,",
+                "*    pub port: i32,",
+                "*    pub host_user: String,",
+                "*    pub password: String,",
+                "*}",
+                "*",
+                " #[derive(Serialize, Deserialize, Debug, Clone)]",
+                " pub struct InstallHost {",
+                "     pub local_node_path: String,"
+            ],
+            "firstLineNumber": 18,
+            "path": "src/models/host.rs",
+            "comments": [
+                "[[sym:proto/node.proto(9aac79cb-9e0d-42ea-a222-637b01b6a757)]]",
+                "ewlfnwekfnlwekmf lkwe mfewm kew\n\n![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2F11571f9f-4617-4e2c-a5a7-b4874b7f4ec2.jpg?alt=media&token=d8a8a49e-f70f-49b0-9adc-c4868d1a43cb)"
+            ]
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " use std::io::Write;",
+                " use uuid::Uuid;",
+                " ",
+                "*#[derive(Serialize, Deserialize, Queryable, Debug, Insertable, Identifiable, Clone)]",
+                "*#[table_name = \"storage\"]",
+                "*pub struct Storage {",
+                "*    pub id: Uuid,",
+                "*    pub name: String,",
+                "*    pub status: String,",
+                "*    pub storage_type: StorageType,",
+                "*    pub config: StorageConfig,",
+                "*}",
+                " ",
+                " #[derive(Serialize, Deserialize, Debug)]",
+                " pub struct NewStorage {"
+            ],
+            "firstLineNumber": 8,
+            "path": "src/models/storage.rs",
+            "comments": [
+                "bla bka bka"
+            ]
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "     }",
+                " }",
+                " ",
+                "*impl From<&NewStorage> for Storage {",
+                "*    fn from(ns: &NewStorage) -> Self {",
+                "*        Storage {",
+                "*            id: Uuid::new_v4(),",
+                "*            name: ns.name.to_owned(),",
+                "*            status: String::from(\"UP\"),",
+                "*            storage_type: ns.storage_type,",
+                "*            config: ns.config.clone(),",
+                "*        }",
+                "*    }",
+                "*}",
+                "*",
+                " #[derive(FromSqlRow, Serialize, Deserialize, Debug, AsExpression, Clone, QueryableByName)]",
+                " #[sql_type = \"Jsonb\"]",
+                " pub struct StorageConfig {"
+            ],
+            "firstLineNumber": 47,
+            "path": "src/models/storage.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": ""
+        }
+    ],
+    "symbols": {
+        "9aac79cb-9e0d-42ea-a222-637b01b6a757": {
+            "type": "path",
+            "text": "proto/node.proto",
+            "path": "proto/node.proto"
+        }
+    },
+    "file_version": "2.0.0",
+    "meta": {
+        "app_version": "0.4.0",
+        "file_blobs": {
+            "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd",
+            "src/models/storage.rs": "0e8ad6f762e46be99b62fae383e3b46a76b87da8"
+        }
+    }
+}
