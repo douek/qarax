@@ -11,7 +11,7 @@
     "content": [
         {
             "type": "text",
-            "text": ""
+            "text": "1 line"
         },
         {
             "type": "snippet",
@@ -92,9 +92,9 @@
         {
             "type": "snippet",
             "lines": [
-                "             .inner_join(kernels::table.on(kernels::id.eq(kernel_id)))",
-                "             .select(crate::schema::storage::all_columns)",
-                "             .get_result::<Storage>(conn)",
+                " impl From<&NewKernel> for Kernel {",
+                "     fn from(nk: &NewKernel) -> Self {",
+                "         Kernel {",
                 "*            .map_err(|e| anyhow!(e))",
                 "*    }",
                 "*",
@@ -102,10 +102,7 @@
                 "*        use crate::schema::kernels::dsl::*;",
                 "*",
                 "*        diesel::delete(kernels).execute(conn)",
-                "*    }",
-                " }",
-                " ",
-                " #[derive(Serialize, Deserialize, Debug)]"
+                "*    }"
             ],
             "firstLineNumber": 36,
             "path": "src/models/kernel.rs",
@@ -119,7 +116,7 @@
     "symbols": {},
     "file_version": "2.0.0",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.0",
         "file_blobs": {
             "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd",
             "src/models/kernel.rs": "3d530b295631b0ee918c1481864e7f36ddb5a264"
