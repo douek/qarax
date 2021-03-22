@@ -7,6 +7,10 @@
     },
     "content": [
         {
+            "type": "text",
+            "text": "Something Something Text haha"
+        },
+        {
             "type": "snippet",
             "lines": [
                 " SU_PREFIX=\"sudo su - postgres -c \"",
