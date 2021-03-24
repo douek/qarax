@@ -1,0 +1,112 @@
+{
+    "id": "nDr9seYm1UVtucm7ahSK",
+    "name": "New Host Struct",
+    "task": {
+        "dod": "",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": "Update NewHost struct to match Host struct\n\nChange the NewHost user to host_user and remove the path to qarax-node\n(node path needed only for installation, not needed for adding host)"
+        },
+        {
+            "firstLineNumber": 115,
+            "path": "src/controllers/hosts.rs",
+            "type": "snippet",
+            "lines": [
+                "         let payload = r#\"{ ",
+                "         \"name\":\"hosto\",",
+                "         \"address\": \"1.1.1.1\",",
+                "*        \"host_user\": \"root\",",
+                "+        \"user\": \"root\",",
+                "         \"password\": \"passwordo\",",
+                "         \"port\": 8001}\"#;",
+                " ",
+                "         let (client, conn) = common::get_client(MOUNT, routes());",
+                "         client"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 139,
+            "path": "src/controllers/hosts.rs",
+            "type": "snippet",
+            "lines": [
+                "         let payload = r#\"{ ",
+                "         \"name\":\"hosto\",",
+                "         \"address\": \"1.1.1.1\",",
+                "*        \"host_user\": \"root\",",
+                "+        \"user\": \"root\",",
+                "         \"password\": \"passwordo\",",
+                "         \"port\": 8001}\"#;",
+                " ",
+                "         let (client, conn) = common::get_client(MOUNT, routes());",
+                "         let mut response = client"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 179,
+            "path": "src/controllers/hosts.rs",
+            "type": "snippet",
+            "lines": [
+                "         let payload = r#\"{",
+                "             \"name\":\"hosto\",",
+                "             \"address\": \"1.1.1.1\",",
+                "*            \"host_user\": \"root\",",
+                "+            \"user\": \"root\",",
+                "             \"password\": \"passwordo\",",
+                "             \"port\": 8001}\"#;",
+                " ",
+                "         let (client, conn) = common::get_client(MOUNT, routes());",
+                "         let backend: State<Backend> = State::from(&client.rocket()).unwrap();"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 23,
+            "path": "src/models/host.rs",
+            "type": "snippet",
+            "lines": [
+                "     pub name: String,",
+                "     pub address: String,",
+                "     pub port: i32,",
+                "*    pub host_user: String,",
+                "+    pub user: String,",
+                "     pub password: String,",
+                " }",
+                " ",
+                " #[derive(Serialize, Deserialize, Debug, Clone)]",
+                " pub struct InstallHost {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 98,
+            "path": "src/models/host.rs",
+            "type": "snippet",
+            "lines": [
+                "             name: nh.name.to_owned(),",
+                "             address: nh.address.to_owned(),",
+                "             port: nh.port.to_owned(),",
+                "*            host_user: nh.host_user.to_owned(),",
+                "+            host_user: nh.user.to_owned(),",
+                "             password: nh.password.to_owned(),",
+                "             status: Status::Down,",
+                "         }"
+            ],
+            "comments": []
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.0",
+    "meta": {
+        "app_version": "0.4.0-0",
+        "file_blobs": {
+            "src/controllers/hosts.rs": "f6d0abd98df61eef0591206fd96a3e762ea4e80e",
+            "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd"
+        }
+    }
+}
