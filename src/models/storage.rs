@@ -11,6 +11,7 @@ use uuid::Uuid;
 #[derive(Serialize, Deserialize, Queryable, Debug, Insertable, Identifiable, Clone)]
 #[table_name = "storage"]
 pub struct Storage {
+    // hi
     pub id: Uuid,
     pub name: String,
     pub status: String,
