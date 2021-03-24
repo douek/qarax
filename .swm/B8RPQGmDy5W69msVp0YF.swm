@@ -25,7 +25,9 @@
             ],
             "firstLineNumber": 4,
             "path": "qarax-node/src/vm_service.rs",
-            "comments": []
+            "comments": [
+                "wrwfwf"
+            ]
         },
         {
             "type": "text",
@@ -76,9 +78,10 @@
             "comments": []
         }
     ],
+    "symbols": {},
     "file_version": "2.0.0",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.0-0",
         "file_blobs": {
             "qarax-node/src/vm_service.rs": "0bb6f1f18c4f066f0559b9decab290bc6dcfc54c"
         }
