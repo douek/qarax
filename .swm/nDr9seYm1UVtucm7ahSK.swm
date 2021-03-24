@@ -1,6 +1,6 @@
 {
     "id": "nDr9seYm1UVtucm7ahSK",
-    "name": "New Host Struct 1 ",
+    "name": "New Host Struct 2",
     "task": {
         "dod": "",
         "tests": [],
@@ -28,7 +28,7 @@
                 "             .post(\"/hosts\")"
             ],
             "comments": [
-                "ete4t4ete4t4t"
+                "234234"
             ]
         },
         {
@@ -47,9 +47,7 @@
                 "         let (client, conn) = common::get_client(MOUNT, routes());",
                 "         let mut response = client"
             ],
-            "comments": [
-                "rrrr"
-            ]
+            "comments": []
         },
         {
             "firstLineNumber": 179,
@@ -67,7 +65,9 @@
                 "         let (client, conn) = common::get_client(MOUNT, routes());",
                 "         let backend: State<Backend> = State::from(&client.rocket()).unwrap();"
             ],
-            "comments": []
+            "comments": [
+                "234324"
+            ]
         },
         {
             "firstLineNumber": 23,
