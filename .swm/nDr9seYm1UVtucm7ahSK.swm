@@ -47,7 +47,9 @@
                 "         let (client, conn) = common::get_client(MOUNT, routes());",
                 "         let mut response = client"
             ],
-            "comments": []
+            "comments": [
+                "rrrr"
+            ]
         },
         {
             "firstLineNumber": 179,
