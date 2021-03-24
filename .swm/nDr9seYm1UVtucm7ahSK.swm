@@ -27,7 +27,10 @@
                 "         let (client, conn) = common::get_client(MOUNT, routes());",
                 "         client"
             ],
-            "comments": []
+            "comments": [
+                "esfewsfse fzew",
+                "gesgreg rg egrers"
+            ]
         },
         {
             "firstLineNumber": 139,
