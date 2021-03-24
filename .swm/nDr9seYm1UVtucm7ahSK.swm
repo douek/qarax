@@ -1,6 +1,6 @@
 {
     "id": "nDr9seYm1UVtucm7ahSK",
-    "name": "New Host Struct 2",
+    "name": "New Host Struct 3",
     "task": {
         "dod": "",
         "tests": [],
@@ -28,7 +28,7 @@
                 "             .post(\"/hosts\")"
             ],
             "comments": [
-                "234234"
+                "234234\\. 55555"
             ]
         },
         {
