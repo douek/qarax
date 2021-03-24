@@ -1,6 +1,6 @@
 {
     "id": "nDr9seYm1UVtucm7ahSK",
-    "name": "New Host Struct",
+    "name": "New Host Struct 1",
     "task": {
         "dod": "",
         "tests": [],
@@ -20,17 +20,14 @@
                 "         \"name\":\"hosto\",",
                 "         \"address\": \"1.1.1.1\",",
                 "*        \"host_user\": \"root\",",
-                "+        \"user\": \"root\",",
-                "         \"password\": \"passwordo\",",
+                "*        \"password\": \"passwordo\",",
                 "         \"port\": 8001}\"#;",
                 " ",
                 "         let (client, conn) = common::get_client(MOUNT, routes());",
-                "         client"
+                "         client",
+                "             .post(\"/hosts\")"
             ],
-            "comments": [
-                "esfewsfse fzew",
-                "gesgreg rg egrers"
-            ]
+            "comments": []
         },
         {
             "firstLineNumber": 139,
