@@ -27,7 +27,10 @@
                 "         client",
                 "             .post(\"/hosts\")"
             ],
-            "comments": []
+            "comments": [
+                "2123132",
+                "324234"
+            ]
         },
         {
             "firstLineNumber": 139,
