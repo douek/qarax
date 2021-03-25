@@ -7,6 +7,7 @@ TEMPLATE_DB="template1"
 existing_user=$(${SU_PREFIX} "${COMMAND_PREFIX} ${TEMPLATE_DB} -c \"SELECT usename FROM pg_catalog.pg_user WHERE usename = '${DB_USER}';\" --tuples-only")
 
 if [ ! -z "$existing_user" ]
+// hohohohoho
 then
     echo "User already exists, not creating"
 else
