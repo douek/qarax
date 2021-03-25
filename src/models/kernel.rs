@@ -39,11 +39,6 @@ impl Kernel {
             .map_err(|e| anyhow!(e))
     }
 
-    pub fn delete_all(conn: &PgConnection) -> Result<usize, diesel::result::Error> {
-        use crate::schema::kernels::dsl::*;
-
-        diesel::delete(kernels).execute(conn)
-    }
 }
 
 #[derive(Serialize, Deserialize, Debug)]
