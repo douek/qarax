@@ -46,6 +46,7 @@
                 "*#[derive(Serialize, Deserialize, Queryable, Debug, Insertable, Identifiable, Clone)]",
                 "*#[table_name = \"storage\"]",
                 "*pub struct Storage {",
+                "*    // hi",
                 "*    pub id: Uuid,",
                 "*    pub name: String,",
                 "*    pub status: String,",
@@ -59,7 +60,7 @@
             "firstLineNumber": 8,
             "path": "src/models/storage.rs",
             "comments": [
-                "bla bka bka"
+                "bla bka bkattty rty rtbjktrskj trskjgh skjrt"
             ]
         },
         {
@@ -84,7 +85,7 @@
                 " #[sql_type = \"Jsonb\"]",
                 " pub struct StorageConfig {"
             ],
-            "firstLineNumber": 47,
+            "firstLineNumber": 48,
             "path": "src/models/storage.rs",
             "comments": []
         },
@@ -100,12 +101,12 @@
             "path": "proto/node.proto"
         }
     },
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.4.0",
+        "app_version": "0.4.0-0",
         "file_blobs": {
             "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd",
-            "src/models/storage.rs": "0e8ad6f762e46be99b62fae383e3b46a76b87da8"
+            "src/models/storage.rs": "75379157aa3b8da0289430c08e7e16415c9efe8e"
         }
     }
 }
