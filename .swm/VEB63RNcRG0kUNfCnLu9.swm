@@ -14,11 +14,17 @@
             "firstLineNumber": 1,
             "path": "migrations/2020-08-12-081857_create_drives_table/down.sql",
             "comments": [
-                "345345"
+                "345345\n\nijiojio [[sym:diesel.toml(1435793e-898b-4886-b0f0-50baac601109)]]"
             ]
         }
     ],
-    "symbols": {},
+    "symbols": {
+        "1435793e-898b-4886-b0f0-50baac601109": {
+            "type": "path",
+            "text": "diesel.toml",
+            "path": "diesel.toml"
+        }
+    },
     "file_version": "2.0.1",
     "meta": {
         "app_version": "0.4.0-0",
