@@ -13,7 +13,9 @@
             ],
             "firstLineNumber": 1,
             "path": "migrations/2020-08-12-081857_create_drives_table/down.sql",
-            "comments": []
+            "comments": [
+                "345345"
+            ]
         }
     ],
     "symbols": {},
