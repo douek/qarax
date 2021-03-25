@@ -59,7 +59,10 @@
             ],
             "firstLineNumber": 42,
             "path": "src/models/kernel.rs",
-            "comments": []
+            "comments": [
+                "werewrwer",
+                "44444 t"
+            ]
         },
         {
             "type": "text",
@@ -67,9 +70,9 @@
         }
     ],
     "symbols": {},
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.0-0",
         "file_blobs": {
             "src/models/kernel.rs": "3d530b295631b0ee918c1481864e7f36ddb5a264"
         }
