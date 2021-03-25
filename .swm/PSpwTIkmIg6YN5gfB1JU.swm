@@ -1,0 +1,51 @@
+{
+    "id": "PSpwTIkmIg6YN5gfB1JU",
+    "name": "3",
+    "content": [
+        {
+            "type": "snippet",
+            "lines": [
+                " #[tokio::main]",
+                " async fn main() -> Result<(), Box<dyn std::error::Error>> {",
+                "     let log_path = \"qarax-node.log\";",
+                "*",
+                "*    let file_appender = tracing_appender::rolling::daily(env::current_dir().unwrap(), log_path);",
+                "*    let (non_blocking, _guard) = tracing_appender::non_blocking(file_appender);",
+                "*    tracing_subscriber::fmt().with_writer(non_blocking).init();",
+                "*",
+                "     let addr = \"0.0.0.0:50051\".parse()?;",
+                " ",
+                "     let vm_service = VmService::new();"
+            ],
+            "firstLineNumber": 12,
+            "path": "qarax-node/src/main.rs",
+            "comments": []
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " ",
+                "     Server::builder()",
+                "         .tcp_keepalive(Some(Duration::from_secs(60)))",
+                "*        .add_service(NodeServer::new(vm_service))",
+                "*        .serve(addr)",
+                "*        .await?;",
+                "*",
+                "     Ok(())",
+                " }",
+                " "
+            ],
+            "firstLineNumber": 25,
+            "path": "qarax-node/src/main.rs",
+            "comments": []
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.0-0",
+        "file_blobs": {
+            "qarax-node/src/main.rs": "404ff3cfe49bd1131ae7ed2b375ade3394fae86e"
+        }
+    }
+}
