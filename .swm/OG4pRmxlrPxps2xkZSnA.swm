@@ -28,7 +28,7 @@
         },
         {
             "type": "text",
-            "text": "[[sym:ONLYBIGLETTERS.md(9762756b-4ea1-46a6-90e1-6bac3db89a72)]]"
+            "text": "[[sym:ONLYnoBIGLETTERS.md(9762756b-4ea1-46a6-90e1-6bac3db89a72)]]"
         }
     ],
     "symbols": {
@@ -59,8 +59,8 @@
         },
         "9762756b-4ea1-46a6-90e1-6bac3db89a72": {
             "type": "path",
-            "text": "ONLYBIGLETTERS.md",
-            "path": "ONLYBIGLETTERS.md"
+            "text": "ONLYnoBIGLETTERS.md",
+            "path": "ONLYnoBIGLETTERS.md"
         }
     },
     "file_version": "2.0.1",
