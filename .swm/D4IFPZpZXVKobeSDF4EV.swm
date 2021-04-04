@@ -6,7 +6,9 @@
         "tests": [
             "jfgjhghj"
         ],
-        "hints": []
+        "hints": [
+            "hint"
+        ]
     },
     "content": [
         {
