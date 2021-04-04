@@ -20,7 +20,15 @@
         },
         {
             "type": "text",
-            "text": "[[sym:LICENSE(c4154be2-59c1-4354-b9ca-1eb2ef3eaa32)]]"
+            "text": "[[sym:./README.md(b425e45b-78a6-4bc7-a0c0-cb12c1d02990)]]"
+        },
+        {
+            "type": "text",
+            "text": "[[sym:./LICENSE(c4154be2-59c1-4354-b9ca-1eb2ef3eaa32)]]"
+        },
+        {
+            "type": "text",
+            "text": "[[sym:ONLYBIGLETTERS.md(9762756b-4ea1-46a6-90e1-6bac3db89a72)]]"
         }
     ],
     "symbols": {
@@ -43,6 +51,16 @@
             "type": "path",
             "text": "python-sdk/qarax/__init__.py",
             "path": "python-sdk/qarax/__init__.py"
+        },
+        "b425e45b-78a6-4bc7-a0c0-cb12c1d02990": {
+            "type": "path",
+            "text": "README.md",
+            "path": "README.md"
+        },
+        "9762756b-4ea1-46a6-90e1-6bac3db89a72": {
+            "type": "path",
+            "text": "ONLYBIGLETTERS.md",
+            "path": "ONLYBIGLETTERS.md"
         }
     },
     "file_version": "2.0.1",
