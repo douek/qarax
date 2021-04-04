@@ -4,14 +4,6 @@
     "content": [
         {
             "type": "text",
-            "text": "[[sym:README.md(08b1746b-d1df-4b6a-8635-9f9fd86b8431)]]"
-        },
-        {
-            "type": "text",
-            "text": "[[sym:LICENSE(c4154be2-59c1-4354-b9ca-1eb2ef3eaa32)]]"
-        },
-        {
-            "type": "text",
             "text": "[[sym:Rocket.toml(54efe9b5-7cf8-4d60-95e5-3657aa5ba860)]]"
         },
         {
@@ -25,14 +17,13 @@
         {
             "type": "text",
             "text": "[[sym:LICENSE(c4154be2-59c1-4354-b9ca-1eb2ef3eaa32)]] 1"
+        },
+        {
+            "type": "text",
+            "text": "[[sym:LICENSE(c4154be2-59c1-4354-b9ca-1eb2ef3eaa32)]]"
         }
     ],
     "symbols": {
-        "08b1746b-d1df-4b6a-8635-9f9fd86b8431": {
-            "type": "path",
-            "text": "README.md",
-            "path": "README.md"
-        },
         "c4154be2-59c1-4354-b9ca-1eb2ef3eaa32": {
             "type": "path",
             "text": "LICENSE",
