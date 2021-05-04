@@ -1,0 +1,53 @@
+{
+    "id": "G9ya0rv4mPaejrS5lAxs",
+    "name": "ded",
+    "task": {
+        "dod": "ede",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": ""
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " #[derive(Debug)]",
+                " struct EntityId(Uuid);",
+                " ",
+                "*impl fmt::Display for EntityId {",
+                "*    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {",
+                "*        write!(f, \"{}\", self.0.to_string())",
+                "*    }",
+                "*}",
+                "*",
+                "*impl From<Uuid> for EntityId {",
+                "*    fn from(uuid: Uuid) -> Self {",
+                "*        EntityId { 0: uuid }",
+                "*    }",
+                "*}",
+                "*",
+                " #[derive(Debug)]",
+                " enum EntityType {",
+                "     Host,"
+            ],
+            "firstLineNumber": 16,
+            "path": "src/models/mod.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": ""
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.4-1",
+        "file_blobs": {
+            "src/models/mod.rs": "4879cebdf8a5ca208a0689817912a52eaa8beffb"
+        }
+    }
+}
