@@ -1,0 +1,53 @@
+{
+    "id": "mXGs3G53M3AwvnvIJCrx",
+    "name": "6y6y",
+    "task": {
+        "dod": "hyhy",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": ""
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "         kernels.load::<Kernel>(conn).map_err(|e| anyhow!(e))",
+                "     }",
+                " ",
+                "*    pub fn insert(new_kernel: &NewKernel, conn: &PgConnection) -> Result<Uuid> {",
+                "*        let kernel = Kernel::from(new_kernel);",
+                "*",
+                "*        match diesel::insert_into(kernels::table)",
+                "*            .values(&kernel)",
+                "*            .execute(conn)",
+                "*        {",
+                "*            Ok(_) => Ok(kernel.id.to_owned()),",
+                "*            Err(e) => Err(e.into()),",
+                "*        }",
+                "*    }",
+                "*",
+                "     pub fn get_storage(kernel_id: Uuid, conn: &PgConnection) -> Result<Storage> {",
+                "         crate::schema::storage::table",
+                "             .inner_join(kernels::table.on(kernels::id.eq(kernel_id)))"
+            ],
+            "firstLineNumber": 19,
+            "path": "src/models/kernel.rs",
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": ""
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.4-1",
+        "file_blobs": {
+            "src/models/kernel.rs": "47b59f1139d3acc395f5a18478877cae57dc7091"
+        }
+    }
+}
