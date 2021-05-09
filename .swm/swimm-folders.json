@@ -10,5 +10,8 @@
     },
     "qarax-node/src": {
         "comment": "rwarw4r4"
+    },
+    "python-sdk/qarax/models": {
+        "comment": "test"
     }
 }
