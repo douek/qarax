@@ -13,5 +13,8 @@
     },
     "python-sdk/qarax/models": {
         "comment": "test"
+    },
+    "qarax-node": {
+        "comment": "qarax node"
     }
 }
