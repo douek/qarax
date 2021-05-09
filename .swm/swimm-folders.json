@@ -1,5 +1,8 @@
 {
     "scripts/run_tests.sh": {
         "comment": "4546465"
+    },
+    "python-sdk": {
+        "comment": "Python SDKKKK"
     }
 }
