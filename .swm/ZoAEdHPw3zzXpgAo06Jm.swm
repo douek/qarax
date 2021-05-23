@@ -20,10 +20,12 @@
                 " Example reply:",
                 " ```json",
                 "*{\"id\":\"365e5061-62b9-41e5-9766-47fcd2c51721\"}",
-                "+{\"host_id\":\"365e5061-62b9-41e5-9766-47fcd2c51721\"}",
-                " ```",
-                " ",
-                " Installing a host:"
+                "*```",
+                "*",
+                "*Installing a host:",
+                " ```shell",
+                " $ curl -XPOST http://localhost:8000/hosts/365e5061-62b9-41e5-9766-47fcd2c51721/install -d '{ \"local_node_path\": \"/path/to/qarax\", \"fcversion\": \"v0.21.1\" }' -H \"Content-Type: application/json\"",
+                " ```"
             ],
             "comments": [
                 "`json`"
