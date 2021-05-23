@@ -1,0 +1,766 @@
+{
+    "id": "ZoAEdHPw3zzXpgAo06Jm",
+    "name": "hi ",
+    "task": {
+        "dod": "",
+        "tests": [],
+        "hints": []
+    },
+    "content": [
+        {
+            "type": "text",
+            "text": "Merge pull request #95 from douek/post-response\n\nUpdate API responses"
+        },
+        {
+            "firstLineNumber": 41,
+            "path": "README.md",
+            "type": "snippet",
+            "lines": [
+                " ```",
+                " Example reply:",
+                " ```json",
+                "*{\"id\":\"365e5061-62b9-41e5-9766-47fcd2c51721\"}",
+                "+{\"host_id\":\"365e5061-62b9-41e5-9766-47fcd2c51721\"}",
+                " ```",
+                " ",
+                " Installing a host:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 59,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           type: string",
+                "         fc_version:",
+                "           type: string",
+                "*        status:",
+                "*          type: string",
+                "       type: object",
+                "     kernel:",
+                "       properties:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 116,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           format: int32",
+                "           type: integer",
+                "       type: object",
+                "*    Error:",
+                "*      type: object",
+                "*      properties:",
+                "*        error:",
+                "*          type: string",
+                "*    HealthResponse:",
+                "*      type: object",
+                "*      properties:",
+                "*        host_status:",
+                "*          type: string",
+                "*    AttachDrive:",
+                "*      type: object",
+                "*      properties:",
+                "*        status:",
+                "*          type: string",
+                "*    PostResponse:",
+                "*      type: object",
+                "*      properties:",
+                "*        id:",
+                "*          type: string",
+                "*          format: uuid",
+                " paths:",
+                "   /hosts:",
+                "     get:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 154,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 type: array",
+                "                 items:",
+                "                   $ref: '#/components/schemas/host'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "     post:",
+                "       summary: Create new host",
+                "       description: Create new host"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 173,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "               $ref: '#/components/schemas/host'",
+                "         required: true",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "   '/hosts/{hostId}':",
+                "     get:",
+                "       summary: Get host by ID"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 200,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           schema:",
+                "             type: string",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/host'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "*                ",
+                "   '/hosts/{hostId}/install':",
+                "     post:",
+                "       summary: Install qarax node on host"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 232,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             schema:",
+                "               $ref: '#/components/schemas/installHost'",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                type: array",
+                "*                items:",
+                "*                  $ref: '#/components/schemas/installHost'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "   '/hosts/{hostId}/health':",
+                "     get:",
+                "       summary: Host health check"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 260,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             type: string",
+                "       responses:",
+                "         default:",
+                "*          description: Host health check result",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*              application/json:",
+                "*                schema:",
+                "*                  $ref: '#/components/schemas/HealthResponse'",
+                "       tags:",
+                "         - Hosts",
+                "   /drives/:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 282,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 items:",
+                "                   $ref: '#/components/schemas/drive'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Drives",
+                "     post:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 299,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             schema:",
+                "               $ref: '#/components/schemas/drive'",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Drives",
+                "   /storage/:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 327,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 type: array",
+                "                 items:",
+                "                   $ref: '#/components/schemas/storage'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Storage",
+                "     post:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 345,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             schema:",
+                "               $ref: '#/components/schemas/storage'",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Storage",
+                "   /kernels/:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 373,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 type: array",
+                "                 items:",
+                "                   $ref: '#/components/schemas/kernel'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Kernels",
+                "     post:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 391,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             schema:",
+                "               $ref: '#/components/schemas/kernel'",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Kernels",
+                "   '/kernels/{kernelId}/storage':"
+            ],
+            "comments": []
+        },
+        {
+            "type": "text",
+            "text": "cool PR"
+        },
+        {
+            "firstLineNumber": 425,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             application/json:",
+                "               schema:",
+                "                 $ref: '#/components/schemas/storage'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - Kernels",
+                "   /vms/:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 447,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 type: array",
+                "                 items:",
+                "                   $ref: '#/components/schemas/vm'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "     post:"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 465,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             schema:",
+                "               $ref: '#/components/schemas/vm'",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "   '/vms/{vmId}/':"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 519,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           schema:",
+                "             type: string",
+                "       responses:",
+                "*        '200':",
+                "*          description: host status",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "   '/vms/{vmId}/stop':"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 546,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           schema:",
+                "             type: string",
+                "       responses:",
+                "*        '200':",
+                "*          description: host status",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/PostResponse'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "   '/vms/{vmId}/drives/':"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 581,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "                 type: array",
+                "                 items:",
+                "                   $ref: '#/components/schemas/drive'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "   '/vms/{vmId}/drives/{driveId}/attach':"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 498,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "             application/json:",
+                "               schema:",
+                "                 $ref: '#/components/schemas/vm'",
+                "*        default:",
+                "*          description: unexpected error",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs",
+                "   '/vms/{vmId}/start':"
+            ],
+            "comments": [
+                "![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2Fb027d49e-0226-45b4-9643-630f6edb70ab.jpeg?alt=media&token=4e4b06d8-4ddc-459d-b661-b37aeb77145c)"
+            ]
+        },
+        {
+            "firstLineNumber": 608,
+            "path": "qarax.yaml",
+            "type": "snippet",
+            "lines": [
+                "           schema:",
+                "             type: string",
+                "       responses:",
+                "*        '200':",
+                "*          description: successful operation",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                type: array",
+                "*                items:",
+                "*                  $ref: '#/components/schemas/AttachDrive'",
+                "         default:",
+                "*          description: unexpected error",
+                "+          description: Default error sample response",
+                "*          content:",
+                "*            application/json:",
+                "*              schema:",
+                "*                $ref: '#/components/schemas/Error'",
+                "       tags:",
+                "         - VMs"
+            ],
+            "comments": [
+                "![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2Ffdcd09b0-bf26-4fbb-95b4-2f9ffb9b371a.png?alt=media&token=9dd611e3-90ab-4bff-943e-cacda662db19)\n\n![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2F267974eb-580c-4f40-8234-40bd9c76419c.png?alt=media&token=c23f2081-24c4-49f7-8ecc-3e85dd7b8e93)"
+            ]
+        },
+        {
+            "firstLineNumber": 25,
+            "path": "src/controllers/drives.rs",
+            "type": "snippet",
+            "lines": [
+                " ) -> ApiResponse {",
+                "     match backend.drive_service.add(&drive.into_inner(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"drive_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 35,
+            "path": "src/controllers/hosts.rs",
+            "type": "snippet",
+            "lines": [
+                " pub fn add_host(host: Json<NewHost>, backend: State<Backend>, conn: DbConnection) -> ApiResponse {",
+                "     match backend.host_service.add_host(&host.into_inner(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"host_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 154,
+            "path": "src/controllers/hosts.rs",
+            "type": "snippet",
+            "lines": [
+                "         assert_eq!(response.is_some(), true);",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.unwrap()).unwrap();",
+                "*        let host_id = response[\"id\"].as_str().unwrap();",
+                "+        let host_id = response[\"host_id\"].as_str().unwrap();",
+                " ",
+                "         let backend: State<Backend> = State::from(&client.rocket()).unwrap();",
+                " "
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 25,
+            "path": "src/controllers/kernels.rs",
+            "type": "snippet",
+            "lines": [
+                " ) -> ApiResponse {",
+                "     match backend.kernel_service.add(&kernel.into_inner(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"kernel_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 25,
+            "path": "src/controllers/storage.rs",
+            "type": "snippet",
+            "lines": [
+                " ) -> ApiResponse {",
+                "     match backend.storage_service.add(&storage.into_inner(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"storage_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 38,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                " pub fn add_vm(vm: Json<NewVm>, backend: State<Backend>, conn: DbConnection) -> ApiResponse {",
+                "     match backend.vm_service.add_vm(&vm.into_inner(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"vm_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 52,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                " pub fn start_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> ApiResponse {",
+                "     match backend.vm_service.start(&id.to_string(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"vm_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(e) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 66,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                " pub fn stop_vm(id: Uuid, backend: State<Backend>, conn: DbConnection) -> ApiResponse {",
+                "     match backend.vm_service.stop(&id.to_string(), &conn) {",
+                "         Ok(id) => ApiResponse {",
+                "*            response: json!({ \"id\": id }),",
+                "+            response: json!({ \"vm_id\": id }),",
+                "             status: Status::Ok,",
+                "         },",
+                "         Err(_) => ApiResponse {"
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 220,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                "             .dispatch();",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.body_string().unwrap()).unwrap();",
+                "*        let vm_id = response[\"id\"].as_str().unwrap();",
+                "+        let vm_id = response[\"vm_id\"].as_str().unwrap();",
+                " ",
+                "         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);",
+                " "
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 247,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                "             .dispatch();",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.body_string().unwrap()).unwrap();",
+                "*        let vm_id = response[\"id\"].as_str().unwrap();",
+                "+        let vm_id = response[\"vm_id\"].as_str().unwrap();",
+                " ",
+                "         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);",
+                " "
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 281,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                "             .dispatch();",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.body_string().unwrap()).unwrap();",
+                "*        let vm_id = response[\"id\"].as_str().unwrap();",
+                "+        let vm_id = response[\"vm_id\"].as_str().unwrap();",
+                " ",
+                "         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);",
+                " "
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 309,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                "             .dispatch();",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.body_string().unwrap()).unwrap();",
+                "*        let vm_id = response[\"id\"].as_str().unwrap();",
+                "+        let vm_id = response[\"vm_id\"].as_str().unwrap();",
+                " ",
+                "         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);",
+                " "
+            ],
+            "comments": []
+        },
+        {
+            "firstLineNumber": 346,
+            "path": "src/controllers/vms.rs",
+            "type": "snippet",
+            "lines": [
+                "             .dispatch();",
+                " ",
+                "         let response: Value = serde_json::from_str(&response.body_string().unwrap()).unwrap();",
+                "*        let vm_id = response[\"id\"].as_str().unwrap();",
+                "+        let vm_id = response[\"vm_id\"].as_str().unwrap();",
+                " ",
+                "         assert_eq!(backend.vm_service.get_all(&conn).unwrap().len(), 1);",
+                " "
+            ],
+            "comments": []
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.5-0",
+        "file_blobs": {
+            "README.md": "862ca2cd5b62e9ba50ef3539bc19c8f3353090e6",
+            "qarax.yaml": "49d6fe96c68031598c5acc265636d15458e92d95",
+            "src/controllers/drives.rs": "a90814706dc7ab862d2198717c92715823848bc4",
+            "src/controllers/hosts.rs": "f6d0abd98df61eef0591206fd96a3e762ea4e80e",
+            "src/controllers/kernels.rs": "ef3dfce7fe9b4f0cb587410d7ff60f1512f75fb6",
+            "src/controllers/storage.rs": "2ec92dc91e73c2ed817993c8e9c3036ff1f4fdb2",
+            "src/controllers/vms.rs": "9a6433de57e5b8e63e3a3f8ea5475fa1a9a51b81"
+        }
+    }
+}
