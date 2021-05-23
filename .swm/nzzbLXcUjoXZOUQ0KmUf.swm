@@ -19,6 +19,7 @@
                 "*existing_user=$(${SU_PREFIX} \"${COMMAND_PREFIX} ${TEMPLATE_DB} -c \\\"SELECT usename FROM pg_catalog.pg_user WHERE usename = '${DB_USER}';\\\" --tuples-only\")",
                 " ",
                 "*if [ ! -z \"$existing_user\" ]",
+                "*// hohohohoho",
                 "*then",
                 "*    echo \"User already exists, not creating\"",
                 "*else",
@@ -102,18 +103,14 @@
         {
             "type": "text",
             "text": "General\n=======\n\nPlease read this document before contributing to this repository.\n\nAdding Dependencies\n===================\n\nBefore adding an external dependency, please read this section.\n\nGeneral\n-------\n\n*   If the dependency in question passes the guidelines below - it is automatically accepted. Otherwise, consult before adding this dependency.\n    \n*   Whenever you add a package - mention it via Slack or during an R&D Meeting.\n    \n*   When you add a package (as a dependency, not a dev dependency) - add it to `/docs/Licenses.md`.\n    \n\nGuidelines\n----------\n\n*   Licenses - should be `MIT`.\n    \n*   Number of weekly downloads - `>~500,000`.\n    \n*   Unpacked size - `< 30k`.\n    \n*   Vulnerabilities (incl. dependencies) - `0`.\n    \n*   Security warnings - `0`.\n    \n*   Last commit - `<last 6 months`.\n    \n\nHTML/CSS Features\n=================\n\nGeneral\n-------\n\n*   If the feature in question passes the guidelines below - it is automatically accepted. Otherwise, consult before using it.\n    \n\nGuidelines\n----------\n\n*   Browser support - `> 90%` on [Can I Use](https://caniuse.com/)."
-        },
-        {
-            "type": "text",
-            "text": ""
         }
     ],
     "symbols": {},
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.4.0",
+        "app_version": "0.4.5-0",
         "file_blobs": {
-            "scripts/create_db.sh": "ae9a7e74d2f23e2866277586f5dff4a4075b17b3",
+            "scripts/create_db.sh": "3a144540d9fec54a241cc3d9264c685f3bd602e4",
             "scripts/run_tests.sh": "4af6981cead5a1893e2bcd4305ff5bf2020129b8",
             "src/common.rs": "c667e044cc88bb6697353732953048d21b2ae9fa"
         }
