@@ -28,10 +28,6 @@
         },
         {
             "type": "text",
-            "text": "[[sym:OnLYnoSomeBIGLETTERS.md(9762756b-4ea1-46a6-90e1-6bac3db89a72)]]"
-        },
-        {
-            "type": "text",
             "text": "/path"
         }
     ],
@@ -60,16 +56,11 @@
             "type": "path",
             "text": "README.md",
             "path": "README.md"
-        },
-        "9762756b-4ea1-46a6-90e1-6bac3db89a72": {
-            "type": "path",
-            "text": "OnLYnoSomeBIGLETTERS.md",
-            "path": "OnLYnoSomeBIGLETTERS.md"
         }
     },
     "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.4.1-0",
+        "app_version": "0.4.5-0",
         "file_blobs": {}
     }
 }
