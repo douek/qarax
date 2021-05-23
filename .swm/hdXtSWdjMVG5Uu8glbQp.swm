@@ -135,7 +135,7 @@
                 "*            self.pool_manager = urllib3.ProxyManager(",
                 "+        er(",
                 "*                num_pools=pools_size,",
-                "*                maxsize=maxsize,",
+                "*                minsize=minsize,",
                 "*                cert_reqs=cert_reqs,",
                 "*                ca_certs=ca_certs,",
                 "*                cert_file=configuration.cert_file,",
@@ -156,12 +156,12 @@
         }
     ],
     "symbols": {},
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.5-0",
         "file_blobs": {
             "python-sdk/qarax/models/attach_drive.py": "d0e601f8130fd8d95ea79afac65d29da972719d1",
-            "python-sdk/qarax/rest.py": "02f2ecfca10ecc3f4bb39878d0fb2f22421ba0ff"
+            "python-sdk/qarax/rest.py": "3bc71663da4302f813abea4b1c7586ec039a9f18"
         }
     }
 }
