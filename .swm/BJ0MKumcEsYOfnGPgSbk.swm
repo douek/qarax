@@ -1,0 +1,87 @@
+{
+    "id": "BJ0MKumcEsYOfnGPgSbk",
+    "name": "i8i8",
+    "content": [
+        {
+            "type": "text",
+            "text": "dnfjkdf\n\n# swimm\n![Logo](/public/img/logoblack.png)\n- [CONTRIBUTION.md](/docs/CONTRIBUTION.md) -\tPlease read this document before contributing to this repository.\n- [Licenses.md](/docs/Licenses.md) - This document lists the licenses of the external libraries we use in production only\n- [setup-collaboration-tools.md](/docs/setup-collaboration-tools.md) - At Swimm, we currently use the following tools to collaborate.\n- [setup-dev-environment.md](/docs/setup-dev-environment.md) - To run swimm you will need a few things on your machine. Follow the steps below.\n- [suggested-addons.md](/docs/suggested-addons.md) - We want to share a few add-ons the dev team has found useful - these are purely suggestive.\n"
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " async-stream = \"0.2\"",
+                " anyhow = \"1.0\"",
+                " thiserror = \"1.0\"",
+                "*dashmap = \"3.11.7\"",
+                "*",
+                "*[dependencies.rocket_contrib]",
+                "*version = \"0.4.5\"",
+                "*default-features = false",
+                "*features = [\"diesel_postgres_pool\", \"json\", \"uuid\"]",
+                "*",
+                "*[build-dependencies]",
+                "*tonic-build = \"0.2\"",
+                "*",
+                "*[workspace]",
+                "*default-members = [\".\", \"qarax-node\"]",
+                "*members = [\".\", \"qarax-node\"]",
+                "*"
+            ],
+            "firstLineNumber": 19,
+            "path": "Cargo.toml",
+            "comments": [
+                "bla bla `dashmap`"
+            ]
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " ```",
+                " ",
+                " Stop a VM:",
+                "*```shell",
+                "*$ curl -XPOST http://localhost:8000/vms/71205bf5-c444-458f-b1b1-918757ee4892/stop",
+                "*```",
+                "*",
+                "*# FAQ",
+                "*> Will we succeed?",
+                "*",
+                "*Unclear at the moment. Only time will tell.",
+                "*",
+                "*"
+            ],
+            "firstLineNumber": 60,
+            "path": "README.md",
+            "comments": []
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                "*# qarax",
+                "*qarax aims to be a [firecracker](https://firecracker-microvm.github.io/) orchestrator, it is currently in its very early stages of development",
+                "*",
+                "*### Prerequisites",
+                "*```",
+                "*postgresql",
+                "*ansible",
+                " rust",
+                " ```",
+                " Note: currently Rust nightly is required because of Rocket, use the [following](https://rocket.rs/v0.4/guide/getting-started/#installing-rust) instructions for installation."
+            ],
+            "firstLineNumber": 1,
+            "path": "README.md",
+            "comments": [
+                "Sehjfberkj. `Prerequisites` rkejgerjl"
+            ]
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.5-0",
+        "file_blobs": {
+            "Cargo.toml": "3d9394590737927a5f7befbc99211f50a810809a",
+            "README.md": "862ca2cd5b62e9ba50ef3539bc19c8f3353090e6"
+        }
+    }
+}
