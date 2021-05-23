@@ -9,7 +9,7 @@
     "content": [
         {
             "type": "text",
-            "text": "Merge pull request #95 from douek/post-response\n\nUpdate API responses\n\n![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2F7ef3a375-0b80-4235-93dd-1134525311f0.png?alt=media&token=8010ecf4-79e9-4a0b-bfc2-1b6d6b724ef6)"
+            "text": "Merge pull request #95 from douek/post-response\n\nUpdate API responses\n\n![](https://firebasestorage.googleapis.com/v0/b/swimm-dev-content/o/repositories%2FVWbeWHEtDHGQx9QB5A4F%2F7ef3a375-0b80-4235-93dd-1134525311f0.png?alt=media&token=8010ecf4-79e9-4a0b-bfc2-1b6d6b724ef6)\n\n[[sym:./README.md(eae9e6ac-3eba-4abd-90fe-6cd87dc801fb)]] [[sym:./playbooks(cc3d4290-99dd-4669-99be-b601b2067eb5)]]"
         },
         {
             "firstLineNumber": 41,
@@ -25,7 +25,9 @@
                 " ",
                 " Installing a host:"
             ],
-            "comments": []
+            "comments": [
+                "`json`"
+            ]
         },
         {
             "firstLineNumber": 59,
@@ -541,22 +543,6 @@
             ]
         },
         {
-            "firstLineNumber": 25,
-            "path": "src/controllers/drives.rs",
-            "type": "snippet",
-            "lines": [
-                " ) -> ApiResponse {",
-                "     match backend.drive_service.add(&drive.into_inner(), &conn) {",
-                "         Ok(id) => ApiResponse {",
-                "*            response: json!({ \"id\": id }),",
-                "+            response: json!({ \"drive_id\": id }),",
-                "             status: Status::Ok,",
-                "         },",
-                "         Err(e) => ApiResponse {"
-            ],
-            "comments": []
-        },
-        {
             "firstLineNumber": 35,
             "path": "src/controllers/hosts.rs",
             "type": "snippet",
@@ -749,14 +735,24 @@
             "comments": []
         }
     ],
-    "symbols": {},
+    "symbols": {
+        "eae9e6ac-3eba-4abd-90fe-6cd87dc801fb": {
+            "type": "path",
+            "text": "README.md",
+            "path": "README.md"
+        },
+        "cc3d4290-99dd-4669-99be-b601b2067eb5": {
+            "type": "path",
+            "text": "playbooks",
+            "path": "playbooks"
+        }
+    },
     "file_version": "2.0.1",
     "meta": {
         "app_version": "0.4.5-0",
         "file_blobs": {
             "README.md": "862ca2cd5b62e9ba50ef3539bc19c8f3353090e6",
             "qarax.yaml": "49d6fe96c68031598c5acc265636d15458e92d95",
-            "src/controllers/drives.rs": "a90814706dc7ab862d2198717c92715823848bc4",
             "src/controllers/hosts.rs": "f6d0abd98df61eef0591206fd96a3e762ea4e80e",
             "src/controllers/kernels.rs": "ef3dfce7fe9b4f0cb587410d7ff60f1512f75fb6",
             "src/controllers/storage.rs": "2ec92dc91e73c2ed817993c8e9c3036ff1f4fdb2",
