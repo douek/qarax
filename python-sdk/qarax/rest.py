@@ -75,17 +75,17 @@ class RESTClientObject(object):
         if configuration.assert_hostname is not None:
             addition_pool_args['assert_hostname'] = configuration.assert_hostname  # noqa: E501
 
-        if maxsize is None:
+        if minsize is None:
             if configuration.connection_pool_maxsize is not None:
-                maxsize = configuration.connection_pool_maxsize
+                minsize = configuration.connection_pool_maxsize
             else:
-                maxsize = 4
+                minsize = 4
 
         # https pool manager
         if configuration.proxy:
             self.pool_manager = urllib3.ProxyManager(
                 num_pools=pools_size,
-                maxsize=maxsize,
+                minsize=minsize,
                 cert_reqs=cert_reqs,
                 ca_certs=ca_certs,
                 cert_file=configuration.cert_file,
