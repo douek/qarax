@@ -88,38 +88,14 @@
             "firstLineNumber": 87,
             "path": "src/models/host.rs",
             "comments": []
-        },
-        {
-            "type": "snippet",
-            "lines": [
-                " impl From<&NewKernel> for Kernel {",
-                "     fn from(nk: &NewKernel) -> Self {",
-                "         Kernel {",
-                "*            .map_err(|e| anyhow!(e))",
-                "*    }",
-                "*",
-                "*    pub fn delete_all(conn: &PgConnection) -> Result<usize, diesel::result::Error> {",
-                "*        use crate::schema::kernels::dsl::*;",
-                "*",
-                "*        diesel::delete(kernels).execute(conn)",
-                "*    }"
-            ],
-            "firstLineNumber": 36,
-            "path": "src/models/kernel.rs",
-            "comments": []
-        },
-        {
-            "type": "text",
-            "text": ""
         }
     ],
     "symbols": {},
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.4.0",
+        "app_version": "0.4.5-0",
         "file_blobs": {
-            "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd",
-            "src/models/kernel.rs": "3d530b295631b0ee918c1481864e7f36ddb5a264"
+            "src/models/host.rs": "1033281fa802df31b6d3f7309269d392c16ad1fd"
         }
     }
 }
