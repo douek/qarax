@@ -40,20 +40,20 @@
         {
             "type": "snippet",
             "lines": [
-                "     pub fn delete_all(conn: &PgConnection) -> Result<usize, diesel::result::Error> {",
-                "         use crate::schema::kernels::dsl::*;",
+                " }",
                 " ",
-                "*        diesel::delete(kernels).execute(conn)",
-                "*    }",
-                "*}",
-                "*",
-                "*#[derive(Serialize, Deserialize, Debug)]",
+                " #[derive(Serialize, Deserialize, Debug)]",
                 "*pub struct NewKernel {",
                 "*    pub name: String,",
                 "*    pub storage_id: Uuid,",
-                " }",
-                " ",
-                " impl From<&NewKernel> for Kernel {"
+                "*}",
+                "*",
+                "*impl From<&NewKernel> for Kernel {",
+                "*    fn from(nk: &NewKernel) -> Self {",
+                "*        Kernel {",
+                "             id: Uuid::new_v4(),",
+                "             name: nk.name.to_owned(),",
+                "             storage_id: nk.storage_id,"
             ],
             "firstLineNumber": 42,
             "path": "src/models/kernel.rs",
@@ -65,11 +65,11 @@
         }
     ],
     "symbols": {},
-    "file_version": "2.0.0",
+    "file_version": "2.0.1",
     "meta": {
-        "app_version": "0.3.9-6",
+        "app_version": "0.4.5-0",
         "file_blobs": {
-            "src/models/kernel.rs": "3d530b295631b0ee918c1481864e7f36ddb5a264"
+            "src/models/kernel.rs": "47b59f1139d3acc395f5a18478877cae57dc7091"
         }
     }
 }
