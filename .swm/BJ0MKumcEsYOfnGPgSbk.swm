@@ -3,10 +3,6 @@
     "name": "i8i8",
     "content": [
         {
-            "type": "text",
-            "text": "dnfjkdf\n\n# swimm\n![Logo](/public/img/logoblack.png)\n- [CONTRIBUTION.md](/docs/CONTRIBUTION.md) -\tPlease read this document before contributing to this repository.\n- [Licenses.md](/docs/Licenses.md) - This document lists the licenses of the external libraries we use in production only\n- [setup-collaboration-tools.md](/docs/setup-collaboration-tools.md) - At Swimm, we currently use the following tools to collaborate.\n- [setup-dev-environment.md](/docs/setup-dev-environment.md) - To run swimm you will need a few things on your machine. Follow the steps below.\n- [suggested-addons.md](/docs/suggested-addons.md) - We want to share a few add-ons the dev team has found useful - these are purely suggestive.\n"
-        },
-        {
             "type": "snippet",
             "lines": [
                 " async-stream = \"0.2\"",
@@ -32,6 +28,10 @@
             "comments": [
                 "bla bla `dashmap`"
             ]
+        },
+        {
+            "type": "text",
+            "text": "dnfjkdf\n\n# swimm\n![Logo](/public/img/logoblack.png)\n- [CONTRIBUTION.md](/docs/CONTRIBUTION.md) -\tPlease read this document before contributing to this repository.\n- [Licenses.md](/docs/Licenses.md) - This document lists the licenses of the external libraries we use in production only\n- [setup-collaboration-tools.md](/docs/setup-collaboration-tools.md) - At Swimm, we currently use the following tools to collaborate.\n- [setup-dev-environment.md](/docs/setup-dev-environment.md) - To run swimm you will need a few things on your machine. Follow the steps below.\n- [suggested-addons.md](/docs/suggested-addons.md) - We want to share a few add-ons the dev team has found useful - these are purely suggestive.\n"
         },
         {
             "type": "snippet",
