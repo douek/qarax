@@ -1,0 +1,50 @@
+{
+    "id": "PXbeOam5Ry19bY6gvLcs",
+    "name": "test autocomplete",
+    "content": [
+        {
+            "type": "snippet",
+            "lines": [
+                " #",
+                " #already existing elements were commented out",
+                " ",
+                "*#/target",
+                "*# e2e",
+                "*e2e/.cache/",
+                "*e2e/venv/",
+                "*e2e/*.log"
+            ],
+            "firstLineNumber": 21,
+            "path": ".gitignore",
+            "comments": [
+                ""
+            ]
+        },
+        {
+            "type": "snippet",
+            "lines": [
+                " ",
+                " #Added by cargo",
+                " #",
+                "*#already existing elements were commented out",
+                "*",
+                "*#/target",
+                "*# e2e",
+                "*e2e/.cache/",
+                "*e2e/venv/",
+                "*e2e/*.log"
+            ],
+            "firstLineNumber": 19,
+            "path": ".gitignore",
+            "comments": []
+        }
+    ],
+    "symbols": {},
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.5-0",
+        "file_blobs": {
+            ".gitignore": "604e52e9372cba9bc42115b62d7acf84fd38bea7"
+        }
+    }
+}
