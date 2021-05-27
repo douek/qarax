@@ -17,7 +17,7 @@
             "firstLineNumber": 21,
             "path": ".gitignore",
             "comments": [
-                "njy [[sym-text:e2e(5e90a00b-e986-401e-9737-44bba9c29c92)]]"
+                "njy [[sym-text:e2e(5e90a00b-e986-401e-9737-44bba9c29c92)]][[sym-text:e2e(e216a836-4efd-46d4-a8e8-10bd10e02048)]] [[sym-text:elements(ba41f58f-f318-45e4-94ad-83fef1ec9394)]] [[sym-text:e2e(5e90a00b-e986-401e-9737-44bba9c29c92)]] [[sym-text:e2e(a948bedf-7f42-4ff1-8c34-7c338bde2272)]] [[sym-text:e2e(9563d350-1c54-43fc-9ef2-504688b7a705)]]"
             ]
         },
         {
@@ -46,6 +46,58 @@
             "text": "e2e",
             "lineNumber": 26,
             "lineData": "e2e/.cache/",
+            "wordIndex": {
+                "start": 0,
+                "end": 0
+            },
+            "fileBlob": "604e52e9372cba9bc42115b62d7acf84fd38bea7",
+            "type": "generic_text"
+        },
+        "e216a836-4efd-46d4-a8e8-10bd10e02048": {
+            "symbol": "e216a836-4efd-46d4-a8e8-10bd10e02048",
+            "path": ".gitignore",
+            "text": "e2e",
+            "lineNumber": 25,
+            "lineData": "# e2e",
+            "wordIndex": {
+                "start": 2,
+                "end": 2
+            },
+            "fileBlob": "604e52e9372cba9bc42115b62d7acf84fd38bea7",
+            "type": "generic_text"
+        },
+        "ba41f58f-f318-45e4-94ad-83fef1ec9394": {
+            "symbol": "ba41f58f-f318-45e4-94ad-83fef1ec9394",
+            "path": ".gitignore",
+            "text": "elements",
+            "lineNumber": 22,
+            "lineData": "#already existing elements were commented out",
+            "wordIndex": {
+                "start": 5,
+                "end": 5
+            },
+            "fileBlob": "604e52e9372cba9bc42115b62d7acf84fd38bea7",
+            "type": "generic_text"
+        },
+        "a948bedf-7f42-4ff1-8c34-7c338bde2272": {
+            "symbol": "a948bedf-7f42-4ff1-8c34-7c338bde2272",
+            "path": ".gitignore",
+            "text": "e2e",
+            "lineNumber": 27,
+            "lineData": "e2e/venv/",
+            "wordIndex": {
+                "start": 0,
+                "end": 0
+            },
+            "fileBlob": "604e52e9372cba9bc42115b62d7acf84fd38bea7",
+            "type": "generic_text"
+        },
+        "9563d350-1c54-43fc-9ef2-504688b7a705": {
+            "symbol": "9563d350-1c54-43fc-9ef2-504688b7a705",
+            "path": ".gitignore",
+            "text": "e2e",
+            "lineNumber": 28,
+            "lineData": "e2e/*.log",
             "wordIndex": {
                 "start": 0,
                 "end": 0
