@@ -17,7 +17,7 @@
             "firstLineNumber": 21,
             "path": ".gitignore",
             "comments": [
-                ""
+                "njy [[sym-text:e2e(5e90a00b-e986-401e-9737-44bba9c29c92)]]"
             ]
         },
         {
@@ -39,7 +39,21 @@
             "comments": []
         }
     ],
-    "symbols": {},
+    "symbols": {
+        "5e90a00b-e986-401e-9737-44bba9c29c92": {
+            "symbol": "5e90a00b-e986-401e-9737-44bba9c29c92",
+            "path": ".gitignore",
+            "text": "e2e",
+            "lineNumber": 26,
+            "lineData": "e2e/.cache/",
+            "wordIndex": {
+                "start": 0,
+                "end": 0
+            },
+            "fileBlob": "604e52e9372cba9bc42115b62d7acf84fd38bea7",
+            "type": "generic_text"
+        }
+    },
     "file_version": "2.0.1",
     "meta": {
         "app_version": "0.4.5-0",
