@@ -24,5 +24,4 @@ Cargo.lock
 #/target
 # e2e
 e2e/.cache/
-e2e/venv/
 e2e/*.log
