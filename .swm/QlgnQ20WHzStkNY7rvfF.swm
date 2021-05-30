@@ -1,10 +1,14 @@
 {
     "id": "QlgnQ20WHzStkNY7rvfF",
-    "name": "Testting paths",
+    "name": "Testting paths כ",
     "content": [
         {
             "type": "text",
-            "text": "[[sym:./python-sdk/README.md(5cf150d5-f388-435c-b510-9ffe7dd04e33)]]"
+            "text": "[[sym:./python-sdk/README.md(5cf150d5-f388-435c-b510-9ffe7dd04e33)]][[sym:./python-sdk/README.md(5cf150d5-f388-435c-b510-9ffe7dd04e33)]] [[sym:./README.md(658ec55b-cab5-474e-a90d-63bf9e3a93e1)]][[sym:./python-sdk(e5b29533-a232-4ced-bffa-2106240bcc07)]] j"
+        },
+        {
+            "type": "text",
+            "text": "[[sym:./README.md(658ec55b-cab5-474e-a90d-63bf9e3a93e1)]]\n\n[[sym:./README.md(658ec55b-cab5-474e-a90d-63bf9e3a93e1)]][[sym:./migrations/2020-06-06-140540_create_hosts/up.sql(01b6f9f3-8e8d-47cd-88ab-8f8af757732f)]]\n\n[[sym:./README.md(658ec55b-cab5-474e-a90d-63bf9e3a93e1)]][[sym:./migrations/2020-06-06-140540_create_hosts/up.sql(01b6f9f3-8e8d-47cd-88ab-8f8af757732f)]]"
         }
     ],
     "symbols": {
@@ -12,6 +16,21 @@
             "type": "path",
             "text": "python-sdk/README.md",
             "path": "python-sdk/README.md"
+        },
+        "658ec55b-cab5-474e-a90d-63bf9e3a93e1": {
+            "type": "path",
+            "text": "README.md",
+            "path": "README.md"
+        },
+        "e5b29533-a232-4ced-bffa-2106240bcc07": {
+            "type": "path",
+            "text": "python-sdk",
+            "path": "python-sdk"
+        },
+        "01b6f9f3-8e8d-47cd-88ab-8f8af757732f": {
+            "type": "path",
+            "text": "migrations/2020-06-06-140540_create_hosts/up.sql",
+            "path": "migrations/2020-06-06-140540_create_hosts/up.sql"
         }
     },
     "file_version": "2.0.1",
