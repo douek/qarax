@@ -1,0 +1,22 @@
+{
+    "id": "QlgnQ20WHzStkNY7rvfF",
+    "name": "Testting paths",
+    "content": [
+        {
+            "type": "text",
+            "text": "[[sym:./python-sdk/README.md(5cf150d5-f388-435c-b510-9ffe7dd04e33)]]"
+        }
+    ],
+    "symbols": {
+        "5cf150d5-f388-435c-b510-9ffe7dd04e33": {
+            "type": "path",
+            "text": "python-sdk/README.md",
+            "path": "python-sdk/README.md"
+        }
+    },
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.5-0",
+        "file_blobs": {}
+    }
+}
