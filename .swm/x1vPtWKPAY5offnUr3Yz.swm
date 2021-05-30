@@ -1,0 +1,22 @@
+{
+    "id": "x1vPtWKPAY5offnUr3Yz",
+    "name": "path",
+    "content": [
+        {
+            "type": "text",
+            "text": "rfjrene\n\n[[sym:./.gitignore(f81f47d5-7813-453e-8783-e1cde57b600e)]]"
+        }
+    ],
+    "symbols": {
+        "f81f47d5-7813-453e-8783-e1cde57b600e": {
+            "type": "path",
+            "text": ".gitignore",
+            "path": ".gitignore"
+        }
+    },
+    "file_version": "2.0.1",
+    "meta": {
+        "app_version": "0.4.5-0",
+        "file_blobs": {}
+    }
+}
